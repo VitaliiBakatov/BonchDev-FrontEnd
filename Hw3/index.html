@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1 id="news__title">
+            Spin IT Breaking News
+        </h1>
+        <video width="400" height="300" controls="controls" src="./assets/cat.mp4"></video>
+        <p class="news__brief">
+            Коту Пуське сегодня вставать в 6 часов утра &#128561;! Скорее оставьте ему слова поддержки &#129392;.
+        </p>
+        <div class="sort__btn">
+            <button onclick="sortComment(1)">Сначала новые</button>
+            <button onclick="sortComment(2)">Сначала старые</button>
+        </div>
+        <div id="comment#0"></div>
+        <template id="comment__template">
+            <div id="comment#" class="comments">
+                <div class="comments__info">
+                    <h3 id="comment_author">Автор</h3>
+                    <p id="comment_text">Комментарий</p>
+                    <p id="comment_date">Дата</p>
+                </div>
+                <div class="comments__btn">
+                    <button id="comment_edit_btn" onclick="">Редактировать комментарий</button>
+                    <button id="comment_delete_btn" onclick="">Удалить комментарий</button>
+                </div>
+            </div>
+        </template>
+
+        <div class="news__comment_add">
+            <div class="news__comment_add__text">
+                <textarea id="addComment_authorName" rows="1" placeholder="Ваше имя"></textarea>
+                <textarea id="addComment_commentText" rows="5" cols="60" placeholder="Ваш комментарий"></textarea>
+            </div>
+            <button onclick="addComment()">
+                Добавить
+            </button>
+        </div>
+
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
