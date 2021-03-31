@@ -36,6 +36,8 @@ async function getData() {
     const promise = new Promise((resolve, reject) => {
         setTimeout(() => {
             try {
+                let h2 = document.getElementsByTagName("h2")
+                h2[0].parentNode.removeChild(h2[0])
                 let i = 1
                 dataFromMars.forEach((dataFromMars) => {
                     let container = document.getElementsByClassName("container")
