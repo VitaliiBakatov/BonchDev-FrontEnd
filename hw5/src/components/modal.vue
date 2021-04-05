@@ -14,22 +14,22 @@
             <table>
               <tr><span>Название: </span></tr>
               <tr>
-                <input type="text" v-model="title">
+                <input type="text" v-model="titleModal">
               </tr>
               <br>
               <tr><span>Описание: </span></tr>
               <tr>
-                <input type="text" v-model="description">
+                <input type="text" v-model="descriptionModal">
               </tr>
               <br>
               <tr><span>Дата: </span></tr>
               <tr>
-                <input type="date" v-model="date">
+                <input type="date" v-model="dateModal">
               </tr>
               <br>
               <tr><span>Сумма: </span></tr>
               <tr>
-                <input type="number" v-model.number="amount">
+                <input type="number" v-model.number="amountModal">
               </tr>
               <br>
             </table>
@@ -38,7 +38,7 @@
 
         <div class="modal-footer">
           <slot name="footer">
-            <button class="modal-default-button" @click="$emit('close', [title, description, date, amount])">
+            <button class="modal-default-button" @click="$emit('close', [titleModal, descriptionModal, dateModal, amountModal])">
               Добавить
             </button>
             <br>
@@ -52,12 +52,13 @@
 <script>
 export default {
   name: 'modal',
+  props: ['title', 'description', 'date', 'amount'],
   data () {
     return {
-      title: '',
-      description: '',
-      date: '',
-      amount: ''
+      titleModal: this.title,
+      descriptionModal: this.description,
+      dateModal: this.date,
+      amountModal: this.amount
     }
   }
 }

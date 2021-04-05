@@ -16,7 +16,7 @@
         </div>
         <div class="btn">
           <button @click="showIncomeEditModal = true">Редактировать</button>
-          <modal v-if="showIncomeEditModal" @close="editIncome(item, $event)">
+          <modal v-if="showIncomeEditModal" @close="editIncome(item, $event)" :title="item.title" :description="item.description" :date="item.date" :amount="item.amount">
             <h3 slot="header">Редактирование доходов</h3>
           </modal>
           <button v-on:click="itemsIncome.splice(index, 1)">Удалить</button>
@@ -39,7 +39,7 @@
         </div>
         <div class="btn">
           <button @click="showCostsEditModal = true">Редактировать</button>
-          <modal v-if="showCostsEditModal" @close="editCost(item, $event)">
+          <modal v-if="showCostsEditModal" @close="editCost(item, $event)" :title="item.title" :description="item.description" :date="item.date" :amount="item.amount">
             <h3 slot="header">Редактирование расходов</h3>
           </modal>
           <button v-on:click="itemsCosts.splice(index, 1)">Удалить</button>
@@ -63,22 +63,8 @@ export default {
   },
   data () {
     return {
-      itemsIncome: [
-        {
-          title: 'phone',
-          description: 'Coolest phone ever',
-          date: '22.02.10',
-          amount: 20000
-        }
-      ],
-      itemsCosts: [
-        {
-          title: 'phone',
-          description: 'Coolest phone ever',
-          date: '22.02.10',
-          amount: 20000
-        }
-      ],
+      itemsIncome: [],
+      itemsCosts: [],
       showCostsCreateModal: false,
       showIncomeCreateModal: false,
       showCostsEditModal: false,
@@ -115,40 +101,48 @@ export default {
   },
   methods: {
     addCost (args) {
-      this.itemsCosts.push(
-        {
-          title: args[0],
-          description: args[1],
-          date: args[2],
-          amount: args[3]
-        }
-      )
-      this.showCostsCreateModal = false
+      if (!args[0].isEmpty && !args[1].isEmpty && !args[2].isEmpty && !args[3].isEmpty) {
+        this.itemsCosts.push(
+          {
+            title: args[0],
+            description: args[1],
+            date: args[2],
+            amount: args[3]
+          }
+        )
+        this.showCostsCreateModal = false
+      }
     },
     addIncome (args) {
-      this.itemsIncome.push(
-        {
-          title: args[0],
-          description: args[1],
-          date: args[2],
-          amount: args[3]
-        }
-      )
-      this.showIncomeCreateModal = false
+      if (!args[0].isEmpty && !args[1].isEmpty && !args[2].isEmpty && !args[3].isEmpty) {
+        this.itemsIncome.push(
+          {
+            title: args[0],
+            description: args[1],
+            date: args[2],
+            amount: args[3]
+          }
+        )
+        this.showIncomeCreateModal = false
+      }
     },
     editIncome (item, args) {
-      item.title = args[0]
-      item.description = args[1]
-      item.date = args[2]
-      item.amount = args[3]
-      this.showIncomeEditModal = false
+      if (args[0] !== '' && args[1] !== '' && args[2] !== '' && args[3] !== '') {
+        item.title = args[0]
+        item.description = args[1]
+        item.date = args[2]
+        item.amount = args[3]
+        this.showIncomeEditModal = false
+      }
     },
     editCost (item, args) {
-      item.title = args[0]
-      item.description = args[1]
-      item.date = args[2]
-      item.amount = args[3]
-      this.showCostsEditModal = false
+      if (args[0] !== '' && args[1] !== '' && args[2] !== '' && args[3] !== '') {
+        item.title = args[0]
+        item.description = args[1]
+        item.date = args[2]
+        item.amount = args[3]
+        this.showCostsEditModal = false
+      }
     }
   }
 }
